@@ -1,6 +1,3 @@
-RUN useradd -d /home/username -m -s /bin/bash username
-USER username
-
 # Build Stage
 # First pull Golang image
 FROM golang:1.17-alpine as build-env
@@ -28,5 +25,6 @@ COPY --from=build-env /$APP_NAME .
 # Expose application port
 EXPOSE 8081
 
+USER nonroot:nonroot
 # Start app
 CMD ./$APP_NAME
