@@ -20,4 +20,6 @@ EXPOSE 8081
 
 USER nobody
 
+HEALTHCHECK CMD curl --fail http://localhost:8081/ || exit 1
+
 CMD ./$APP_NAME
