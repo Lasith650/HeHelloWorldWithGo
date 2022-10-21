@@ -22,9 +22,17 @@ ENV APP_NAME HelloWorldWithGo
 # Copy only required data into this image
 COPY --from=build-env /$APP_NAME .
 
+RUN echo "nobody:x:65534:65534:Nobody:/:" > /etc/passwd
+#RUN pwd
+#RUN ls
+#RUN cat etc_passwd
+#RUN mkdir /etc/passwd
+#COPY --from=0 /etc_passwd /etc/passwd
+
 # Expose application port
 EXPOSE 8081
 
-USER nonroot:nonroot
+USER nobody
+
 # Start app
 CMD ./$APP_NAME
