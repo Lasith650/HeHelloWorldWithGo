@@ -14,11 +14,10 @@ ENV APP_NAME HelloWorldWithGo
 
 COPY --from=build-env /$APP_NAME .
 
-RUN echo "nobody:x:65534:65534:Nobody:/:" > /etc/passwd
 
 EXPOSE 8081
 
-USER nobody
+USER 10014
 
 HEALTHCHECK CMD curl --fail http://localhost:8081/ || exit 1
 
